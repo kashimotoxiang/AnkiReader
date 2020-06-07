@@ -19,11 +19,11 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    <string-array name="play_mode">
+    <string-array name="random_play">
         <item>循环播放</item>
         <item>随机播放</item>
     </string-array>
-    <string-array name="play_mode_values">
+    <string-array name="random_play_values">
         <item>0</item>
         <item>1</item>
     </string-array>

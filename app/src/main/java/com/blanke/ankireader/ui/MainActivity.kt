@@ -213,7 +213,6 @@ class MainActivity : AppCompatActivity(), DeckAdapter.Listener, MaterialCab.Call
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_main_about -> start(AboutActivity::class.java)
             R.id.menu_main_settings -> start(SettingsActivity::class.java)
         }
         return true

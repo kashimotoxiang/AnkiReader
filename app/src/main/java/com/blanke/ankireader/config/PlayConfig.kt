@@ -33,7 +33,8 @@ data class PlayConfig(
 
     companion object {
         fun loadConfig(context: Context): PlayConfig {
-            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            val preferences =
+                PreferenceManager.getDefaultSharedPreferences(context)
             val commonTextSize = preferences.getInt(
                 context.getString(R.string.key_common_textsize),
                 Config.FONT_SIZE
@@ -65,7 +66,7 @@ data class PlayConfig(
             val playIntervalTime =
                 preferences.getInt(context.getString(R.string.key_play_interval_time), 800)
             val playMode = if (preferences.getString(
-                    context.getString(R.string.key_play_mode),
+                    context.getString(R.string.key_random_play),
                     "0"
                 ) == "1"
             ) PlayMode.Random else PlayMode.Loop
@@ -77,8 +78,14 @@ data class PlayConfig(
             //deckIds
             var playDeckIds =
                 preferences.getString(context.getString(R.string.key_play_deck_ids), "")
-                    ?.split(",".toRegex())?.map { it.toLong() }
-                    ?.toMutableList() ?: mutableListOf()
+
+            val playDeckIdsList = if (playDeckIds!!.isNotBlank()) {
+                playDeckIds.split(",".toRegex()).map { it.toLong() }
+                    .toMutableList()
+            } else {
+                mutableListOf<Long>()
+            }
+
             val ttsSwitch =
                 preferences.getBoolean(context.getString(R.string.key_tts_switch), false)
             val ttsUseAll =
@@ -107,7 +114,7 @@ data class PlayConfig(
                 ttsUseAll,
                 ttsUseFront,
                 ttsUseBack,
-                playDeckIds
+                playDeckIdsList
             )
         }
 

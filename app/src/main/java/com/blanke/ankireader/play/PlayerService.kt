@@ -84,9 +84,6 @@ class PlayerService : Service() {
         }
     }
 
-    /**
-     * 播放音乐
-     */
     @SuppressLint("CheckResult")
     private fun play() {
         if (currentState == PlayState.PLAYING) {

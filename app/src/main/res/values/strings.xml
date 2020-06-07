@@ -37,8 +37,8 @@
     <string name="key_play_switch">key_play_switch</string>
     <string name="text_play_switch">播放开关</string>
     <string name="text_play_switch_summary">播放音频开关,你可以选择只看弹幕</string>
-    <string name="key_play_mode">key_play_mode</string>
-    <string name="text_play_mode">播放模式</string>
+    <string name="key_random_play">key_random_play</string>
+    <string name="text_random_play">随机播放</string>
     <string name="text_category_notification">通知栏设置</string>
     <string name="key_notification_switch">key_notification_switch</string>
     <string name="text_notification_switch">通知栏开关</string>

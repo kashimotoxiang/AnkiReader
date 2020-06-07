@@ -2,9 +2,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory android:title="@string/text_category_note_float_settings">
-        <com.blanke.ankireader.weiget.IntPreference
+
+        <EditTextPreference
+            android:defaultValue="14"
+            android:inputType="number"
             android:key="@string/key_common_textsize"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
             android:title="@string/text_common_textsize" />
+
+
         <SwitchPreference
             android:defaultValue="true"
             android:key="@string/key_common_click_stop"
@@ -12,28 +19,23 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/text_category_play_settings">
 
-        <com.blanke.ankireader.weiget.IntEditTextPreference
+        <EditTextPreference
             android:defaultValue="800"
-            android:dependency="@string/key_play_switch"
             android:inputType="number"
             android:key="@string/key_play_interval_time"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
             android:title="@string/text_play_interval_time" />
-
-        <ListPreference
-            android:defaultValue="0"
-            android:dependency="@string/key_play_switch"
-            android:entries="@array/play_mode"
-            android:entryValues="@array/play_mode_values"
-            android:key="@string/key_play_mode"
-            android:title="@string/text_play_mode" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:dependency="@string/key_play_switch"
-            android:key="@string/key_play_reverse"
-            android:title="@string/text_play_reverse" />
+            android:key="@string/key_random_play"
+            android:title="@string/text_random_play" />
 
     </PreferenceCategory>
+
+
     <PreferenceCategory android:title="@string/text_category_notification">
 
         <SwitchPreference
@@ -50,6 +52,7 @@
             android:key="@string/key_tts_switch"
             android:summary="@string/text_tts_switch_summary"
             android:title="@string/text_tts_switch" />
+
 
         <SwitchPreference
             android:defaultValue="false"
@@ -69,6 +72,5 @@
             android:dependency="@string/key_tts_switch"
             android:key="@string/key_tts_back_switch"
             android:title="@string/text_tts_back_switch" />
-
     </PreferenceCategory>
 </PreferenceScreen>
