@@ -1,10 +1,8 @@
 package com.blanke.ankireader.ui
 
+
 import android.content.Context
-
-
 import android.view.View
-import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -13,19 +11,12 @@ import com.blanke.ankireader.R
 import com.blanke.ankireader.bean.Deck
 import com.blanke.ankireader.ui.DeckAdapter.ViewHold
 
-import java.util.*
 
 class DeckAdapter(
-    private val context: Context,
-    private var listener: Listener
+    private val context: Context
 ) :
     RecyclerView.Adapter<ViewHold>(),
     IDragSelectAdapter {
-    interface Listener {
-        open fun onClick(index: Int)
-        open fun onLongClick(index: Int)
-        open fun onSelectionChanged(selectedCount: Int)
-    }
 
     private var datas: MutableList<Deck>
     private var selectPositions: MutableList<Int>
@@ -41,7 +32,6 @@ class DeckAdapter(
 
     fun clearSelected() {
         selectPositions.clear()
-        notifyDataSetChanged()
     }
 
     fun toggleSelected(position: Int) {
@@ -50,12 +40,6 @@ class DeckAdapter(
         } else {
             selectPositions.add(position)
         }
-        notifyItemChanged(position)
-        notifySelectedCount()
-    }
-
-    fun getSelectedCount(): Int {
-        return selectPositions.size
     }
 
     fun selectAll() {
@@ -63,8 +47,6 @@ class DeckAdapter(
         for (i in 0 until itemCount) {
             selectPositions.add(i)
         }
-        notifySelectedCount()
-        notifyDataSetChanged()
     }
 
     fun selectDecks(deckIds: MutableList<Long>) {
@@ -88,12 +70,8 @@ class DeckAdapter(
 
     fun setDatas(datas: MutableList<Deck>) {
         this.datas = datas
-        notifyDataSetChanged()
     }
 
-    private fun notifySelectedCount() {
-        listener.onSelectionChanged(selectPositions.size)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         val view = View.inflate(context, R.layout.item_deck, null)
@@ -102,14 +80,6 @@ class DeckAdapter(
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         holder.tv.text = datas[position].name
-        holder.itemView.isSelected = selectPositions.contains(position)
-        holder.itemView.setOnLongClickListener(OnLongClickListener {
-            listener.onLongClick(position)
-            return@OnLongClickListener true
-        })
-        holder.itemView.setOnClickListener {
-            listener.onClick(position)
-        }
     }
 
     override fun setSelected(index: Int, selected: Boolean) {
@@ -118,8 +88,6 @@ class DeckAdapter(
         } else {
             selectPositions.remove(index)
         }
-        notifyItemChanged(index)
-        notifySelectedCount()
     }
 
     override fun isIndexSelectable(index: Int): Boolean {

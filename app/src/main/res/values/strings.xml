@@ -67,4 +67,7 @@
     <string name="msg_deck_empty">牌组为空...</string>
     <string name="text_about">关于</string>
     <string name="text_github">本项目开源:\nhttps://github.com/Blankeer/AnkiReader</string>
+    <string name="card_back">card back</string>
+    <string name="card_front">card front</string>
+    <string name="deck_title">Deck Title</string>
 </resources>
